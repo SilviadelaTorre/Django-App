@@ -1,0 +1,6 @@
+Django==4.2.7
+whiteNoise
+django-crispy-forms
+psycopg2-binary
+jinja2
+crispy_bootstrap4
