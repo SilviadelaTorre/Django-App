@@ -13,31 +13,10 @@ ReleCloud - Request information
 <form method="post">
     {% csrf_token %}
     
-    <!-- Campo "name" -->
-    <div class="form-group">
-        <label for="{{ form.name.id_for_label }}">Name:</label>
-        {{ form.name }}
-    </div>
-
-    <!-- Campo "email" -->
-    <div class="form-group">
-        <label for="{{ form.email.id_for_label }}">Email:</label>
-        {{ form.email }}
-    </div>
-
-    <!-- Campo "cruise" -->
-    <div class="form-group">
-        <label for="{{ form.cruise.id_for_label }}">Cruise:</label>
-        {{ form.cruise }}
-    </div>
-
-    <!-- Campo "notes" -->
-    <div class="form-group">
-        <label for="{{ form.notes.id_for_label }}">Notes:</label>
-        {{ form.notes }}
-    </div>
+    {{form|crispy}}
 
     <button type="submit" class="btn btn-primary">Save</button>
 </form>
 
 {% endblock content %}
+

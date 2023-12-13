@@ -1,5 +1,5 @@
 Django==4.2.7
-whiteNoise
+whitenoise
 django-crispy-forms
 psycopg2-binary
 jinja2

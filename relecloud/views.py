@@ -9,10 +9,10 @@ from crispy_forms.layout import Submit
 
 # Create your views here.
 def index(request):
-   return render(request, 'index.html')
+    return render(request, 'index.html')
 
 def about(request):
-   return render(request, 'about.html')
+    return render(request, 'about.html')
 
 def destinations(request):
     all_destinations = models.Destination.objects.all()
@@ -49,3 +49,10 @@ class InfoRequestCreate(SuccessMessageMixin, generic.CreateView):
     fields = ['name', 'email', 'cruise', 'notes']
     success_url = reverse_lazy('index')
     success_message = 'Thank you, %(name)s! We will email you when we have more information about %(cruise)s!'
+
+    def form_valid(self, form):
+        received_csrf_token = self.request.POST.get('csrfmiddlewaretoken')
+        print(f"Received CSRF Token: {received_csrf_token}")
+
+        # Your existing logic to save the form data
+        return super().form_valid(form)

@@ -25,7 +25,7 @@ SECRET_KEY = '_*&5c@1153xw6=489*2*=&*%=4)8f^m54kb@3ca-cb(wm%b@wm'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','ant-space-tours-silviadelatorre.azurewebsites.net']
+ALLOWED_HOSTS = ['127.0.0.1','relecloud-silvia.azurewebsites.net']
 
 # Application definition
 
@@ -73,7 +73,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project.wsgi.application'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap4'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -138,6 +138,10 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CSRF_COOKIE_SECURE = True  # Set to True if using HTTPS
+CSRF_COOKIE_SAMESITE = 'Lax'  # Adjust as needed (Lax, Strict, None)
 
-#CSRF_TRUSTED_ORIGINS = 'http://ants-relecloud-db-silvia.postgres.database.azure.com'
-CSRF_COOKIE_DOMAIN = 'http://ants-relecloud-db-silvia.postgres.database.azure.com'
+
+CSRF_TRUSTED_ORIGINS = ['https://relecloud-silvia.azurewebsites.net']
+CSRF_COOKIE_DOMAIN = 'relecloud-silvia.azurewebsites.net'
+
