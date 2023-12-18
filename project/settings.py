@@ -25,7 +25,7 @@ SECRET_KEY = '_*&5c@1153xw6=489*2*=&*%=4)8f^m54kb@3ca-cb(wm%b@wm'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','relecloud-silvia.azurewebsites.net']
+ALLOWED_HOSTS = ['127.0.0.1','relecloudsilvia.azurewebsites.net','relecloud-web.azurewebsites.net','relecloud.azurewebsites.net']
 
 # Application definition
 
@@ -142,6 +142,6 @@ CSRF_COOKIE_SECURE = True  # Set to True if using HTTPS
 CSRF_COOKIE_SAMESITE = 'Lax'  # Adjust as needed (Lax, Strict, None)
 
 
-CSRF_TRUSTED_ORIGINS = ['https://relecloud-silvia.azurewebsites.net']
-CSRF_COOKIE_DOMAIN = 'relecloud-silvia.azurewebsites.net'
+CSRF_TRUSTED_ORIGINS = ['https://relecloud.azurewebsites.net','https://relecloud-web.azurewebsites.net','https://relecloudsilvia.azurewebsites.net','https://relecloudweb.azurewebsites.net']
+CSRF_COOKIE_DOMAIN = 'relecloud.azurewebsites.net'
 
