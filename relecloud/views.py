@@ -50,9 +50,9 @@ class InfoRequestCreate(SuccessMessageMixin, generic.CreateView):
     success_url = reverse_lazy('index')
     success_message = 'Thank you, %(name)s! We will email you when we have more information about %(cruise)s!'
 
-    def form_valid(self, form):
+    '''def form_valid(self, form):
         received_csrf_token = self.request.POST.get('csrfmiddlewaretoken')
         print(f"Received CSRF Token: {received_csrf_token}")
 
         # Your existing logic to save the form data
-        return super().form_valid(form)
+        return super().form_valid(form)'''

@@ -79,19 +79,20 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap4'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    #default': {
+    #    'ENGINE': 'django.db.backends.sqlite3',
+    #    'NAME': BASE_DIR / 'db.sqlite3',
+    #}
+
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "django",
+        "USER": "django",
+        "PASSWORD": "Relecloud-00",
+        "HOST": "relecloud-db.postgres.database.azure.com",
+        "PORT": "5432",
+        "OPTIONS":{"sslmode":"require"}
     }
-    # "default": {
-    #     "ENGINE": "django.db.backends.postgresql",
-    #     "NAME": "django",
-    #     "USER": "django",
-    #     "PASSWORD": os.getenv("DB_PASSWORD"),
-    #     "HOST": "ants-relecloud-db-silvia.postgres.database.azure.com",
-    #     "PORT": "5432",
-    #     "OPTIONS":{"sslmode":"require"}
-    # }
 }
 
 
