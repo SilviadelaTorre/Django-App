@@ -1,18 +1,107 @@
-{% extends 'base.html' %}
+{% comment %} {% extends 'base.html' %} {% endcomment %}
 
-{% block title %}
-ReleCloud - {{ destination }}
-{% endblock %}
 
-{% block content %}
-<h1>{{ destination }}</h1>
-<p>
-{{ destination.description }}
-</p>
-<p>You can explore {{ destination }} on the following cruises:</p>
-<ul class="list-group">
-    {% for cruise in destination.cruises.all %}
-    <a class="list-group-item list-group-item-action" href="{% url 'cruise_detail' cruise.id %}">{{ cruise }}</a>
-    {% endfor %}
-</ul>
-{% endblock content %}
+
+
+
+{% load static %}
+
+<html>
+
+<head>
+    <link rel="stylesheet" href="{% static 'res/css/theme.css' %}" />
+    <title>
+        {% comment %} {% block title %} {% endcomment %}
+        ReleCloud - Expand your horizons
+        {% comment %} {% endblock %} {% endcomment %}
+    </title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-translucent-secondary">
+        <img src="{% static 'res/img/small-logo.png' %}" width="60" height="auto" alt="Rocket ship logo" />
+        <a class="navbar-brand tk-elevon" href="{%url 'index'%}">&nbsp; ReleCloud Space Tourism</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar"
+            aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ml-auto">
+                 <li class="nav-item">
+                    <a class="nav-link" href="{% url 'info_request' %}">Request Information</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'destinations' %}">Destinations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about' %}">About</a>
+                </li>
+                
+                
+            </ul>
+        </div>
+    </nav>
+
+    <main role="main">
+        <div class="jumbotron main-header" style="background-image: url({% static 'res/img/cosmos-db.jpeg' %}); background-size: cover;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="{% static 'res/img/bit_cosmos.png' %}" class="img img-fluid" />
+                    </div>
+                    <div class="col-md-8 ml-md-auto align-self-center">
+                        <h1 class="display-1">Expand your horizons</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if messages %}
+            {% for message in messages %}'
+            <div class="alert alert-{{message.tags}}" role="alert">
+                <p>{{ message }}</p>
+            </div>   
+            {% endfor %}
+        {% endif %}
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <img class="mr-3 img-fluid" src="{{destination.image.url}}" style="width:1000px" />
+                </div>
+                <div class="col-md-8">
+                    {% comment %} {% block content %} {% endcomment %}
+                    <h1 class="display-4 tk-elevon">{{destination}}</h1>
+                    {{destination.description}}
+                    {% comment %} {% endblock %} {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="container">
+        <p>&copy; {{destination}}</p>
+    </footer>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

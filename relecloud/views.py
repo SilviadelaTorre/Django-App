@@ -22,6 +22,10 @@ class DestinationDetailView(generic.DetailView):
     template_name = 'destination_detail.html'
     model = models.Destination
     context_object_name = 'destination'
+    #data = models.Image.objects.all()
+    #context = {'data': data}
+   # return render(request, 'products/index.html', context)
+
 
 class DestinationCreateView(generic.CreateView):
     model = models.Destination
