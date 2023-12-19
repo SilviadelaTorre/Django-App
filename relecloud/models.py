@@ -60,4 +60,21 @@ class InfoRequest(models.Model):
         on_delete=models.PROTECT
     )
 
+class Opinions(models.Model):
+    name = models.CharField(
+        max_length=50,
+        null=False,
+        blank=False,
+    )
+    email = models.EmailField()
+    cruise = models.ForeignKey(
+        Cruise,
+        on_delete=models.PROTECT
+    )
+    opinion = models.TextField(
+        max_length=2000,
+        null=False,
+        blank=False
+    )
+   
 

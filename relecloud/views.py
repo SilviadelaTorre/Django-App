@@ -56,3 +56,11 @@ class InfoRequestCreate(SuccessMessageMixin, generic.CreateView):
 
         # Your existing logic to save the form data
         return super().form_valid(form)'''
+    
+
+class Opinions(SuccessMessageMixin, generic.CreateView):
+    template_name = 'opinions.html'
+    model = models.Opinions
+    fields = ['name', 'email', 'cruise', 'opinion']
+    success_url = reverse_lazy('index')
+    success_message = 'Thank you, %(name)s! Your opinion has been saved!'
