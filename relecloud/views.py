@@ -58,19 +58,18 @@ def email_notification(request):
         # Get form data
         name = request.POST['name']
         email = request.POST['email']
-        message = request.POST['message']
-
+        cruise = request.POST['cruise']
         # Send email notification
         subject = 'Request Information Received'
         body = f"""
         Dear {name},
 
-        Thank you for your interest in our products/services. We have received your request for information and will be in touch soon to answer your questions.
+        Thank you for your interest in our {cruise} cruise. We have received your request for information and will be in touch soon to answer your questions.
 
         Regards,
         The Customer Service Team
         """
-        from_email = 'Relecloud.Agency@ufv.com'
+        from_email = '7903401@alumnos.ufv.es'
         recipient_list = [email]  # Update with the recipient's email address
 
         send_mail(subject, body, from_email, recipient_list)
