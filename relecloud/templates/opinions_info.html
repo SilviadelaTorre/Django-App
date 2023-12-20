@@ -12,9 +12,9 @@ ReleCloud - Opinions
 <!-- See opinions table -->
 <h2>See all opinions about the Cruises</h2>
 <ul class="list-group">
-    {% for opinion in cruise_opinions_table.cruises_and_opinions.all %} 
+    {% for opinion in opinions %} 
     <a class="list-group-item list-group-item-action">
-        {{opinion}}
+        {{opinion.cruise}} - {{opinion.opinion}}
     </a>
     {% endfor %}
 </ul>
