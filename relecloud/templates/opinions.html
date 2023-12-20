@@ -11,13 +11,14 @@ ReleCloud - Opinions
 
 <h2>Fill out the form below to create an opinon about a Cruise</h2>
 
-<form method="post" class="form" id="op">
+
+<form method="post" class="form">
     {% csrf_token %}
     
     {% for field in form %}
         <div class="form-group">
             {{ field.label_tag }}
-            {{ field|as_crispy_field }}
+            {{ field|as_crispy_field}}
             {{ field.errors }}
         </div>
     {% endfor %}

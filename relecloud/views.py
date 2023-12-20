@@ -70,7 +70,7 @@ class Opinions(SuccessMessageMixin, generic.CreateView): # form opinions
     template_name = 'opinions.html'
     model = models.Opinions
     fields = ['name', 'email', 'cruise', 'opinion']
-    success_url = reverse_lazy('opinions_info.html')
+    success_url = reverse_lazy('opinions_info')
     success_message = 'Thank you, %(name)s! Your opinion has been saved!'
 
     def form_valid(self, form):

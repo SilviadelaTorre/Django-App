@@ -14,7 +14,7 @@ ReleCloud - Opinions
 <ul class="list-group">
     {% for opinion in opinions %} 
     <a class="list-group-item list-group-item-action">
-        {{opinion.cruise}} - {{opinion.opinion}}
+        {{opinion.cruise.name}} - {{opinion.opinion}}
     </a>
     {% endfor %}
 </ul>
