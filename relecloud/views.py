@@ -66,18 +66,17 @@ class InfoRequestCreate(SuccessMessageMixin, generic.CreateView):
         return super().form_valid(form)'''
     
 
-class Opinions(SuccessMessageMixin, generic.CreateView):
+class Opinions(SuccessMessageMixin, generic.CreateView): # form opinions
     template_name = 'opinions.html'
     model = models.Opinions
     fields = ['name', 'email', 'cruise', 'opinion']
     success_url = reverse_lazy('opinions_info.html')
     success_message = 'Thank you, %(name)s! Your opinion has been saved!'
-    """def form_valid(self, form):
+
+    def form_valid(self, form):
         received_csrf_token = self.request.POST.get('csrfmiddlewaretoken')
         print(f"Received CSRF Token: {received_csrf_token}")
-
-        # Your existing logic to save the form data
-        return super().form_valid(form)"""
+        return super().form_valid(form)
 
 class OpinionsTable(SuccessMessageMixin, generic.CreateView):
     template_name = 'opinions_info.html'
