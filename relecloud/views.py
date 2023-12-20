@@ -64,3 +64,10 @@ class Opinions(SuccessMessageMixin, generic.CreateView):
     fields = ['name', 'email', 'cruise', 'opinion']
     success_url = reverse_lazy('index')
     success_message = 'Thank you, %(name)s! Your opinion has been saved!'
+
+class OpinionsTable(SuccessMessageMixin, generic.CreateView):
+    template_name = 'opinions.html'
+    model = models.Opinions
+    #form_class = YourOpinionsForm  # Replace with the actual form class you are using
+    success_url = reverse_lazy('opinions') # Stay in the same page
+    context_object_name = 'opinion'
