@@ -9,20 +9,6 @@ ReleCloud - Opinions
 {% block content %}
 <h1>Opinions</h1>
 
-
-<!-- See opinions table -->
-<h2>See all opinions about the Cruises</h2>
-<ul class="list-group">
-    {% for opinion in destination.opinions.all %}
-    <a class="list-group-item list-group-item-action">
-        <strong>Name:</strong> {{ opinion.name }}<br>
-        <strong>Email:</strong> {{ opinion.email }}<br>
-        <strong>Cruise:</strong> {{ opinion.cruise.name }}<br>
-        <strong>Opinion:</strong> {{ opinion.opinion }}
-    </a>
-    {% endfor %}
-</ul>
-
 <h2>Fill out the form below to create an opinon about a Cruise</h2>
 
 <form method="post" class="form" id="op">
