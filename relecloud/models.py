@@ -67,14 +67,14 @@ class Opinions(models.Model):
         blank=False,
     )
     email = models.EmailField()
-    cruise = models.ForeignKey(
-        Cruise,
-        on_delete=models.PROTECT
-    )
     opinion = models.TextField(
         max_length=2000,
         null=False,
         blank=False
     )
-   
+    cruise = models.ForeignKey(
+        Cruise,
+        on_delete=models.PROTECT
+    )
+  
 
