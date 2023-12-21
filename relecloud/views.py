@@ -18,6 +18,11 @@ def destinations(request):
     all_destinations = models.Destination.objects.all()
     return render(request, 'destinations.html', { 'destinations': all_destinations})
 
+def opinions(request):
+    all_opinions = models.Opinion.objects.all()
+    return render(request, 'opinions.html', { 'opinions': all_opinions})
+
+
 class DestinationDetailView(generic.DetailView):
     template_name = 'destination_detail.html'
     model = models.Destination
@@ -49,6 +54,32 @@ class InfoRequestCreate(SuccessMessageMixin, generic.CreateView):
     fields = ['name', 'email', 'cruise', 'notes']
     success_url = reverse_lazy('index')
     success_message = 'Thank you, %(name)s! We will email you when we have more information about %(cruise)s!'
+
+    '''def form_valid(self, form):
+        received_csrf_token = self.request.POST.get('csrfmiddlewaretoken')
+        print(f"Received CSRF Token: {received_csrf_token}")
+
+        # Your existing logic to save the form data
+        return super().form_valid(form)'''
+
+class OpinionsInfo(SuccessMessageMixin, generic.CreateView):
+    template_name = 'opinions.html'
+    model = models.Opinions
+    context_object_name = 'opinion'
+    
+    '''def form_valid(self, form):
+        received_csrf_token = self.request.POST.get('csrfmiddlewaretoken')
+        print(f"Received CSRF Token: {received_csrf_token}")
+
+        # Your existing logic to save the form data
+        return super().form_valid(form)'''
+
+class OpinionsForm(SuccessMessageMixin, generic.CreateView):
+    template_name = 'opinions_form.html'
+    model = models.Opinions
+    fields = ['name', 'email', 'cruise', 'opinion']
+    success_url = reverse_lazy('opinions')
+    success_message = 'Thank you, %(name)s! Your opinion has been recorded!'
 
     '''def form_valid(self, form):
         received_csrf_token = self.request.POST.get('csrfmiddlewaretoken')

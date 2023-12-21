@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}
+Relecloud - Opinions
+{% endblock %}
+
+{% block content %}
+<h1>Opinions</h1>
+
+
+<a href="{% url 'opinions_form' %}" class="btn btn-primary">Create Opinion</a>
+
+<!-- Table -->
+<h2>See all opinions about cruises</h2>
+<ul>
+    {% for opinion in opinions %}
+    <li>
+        <strong>{{ opinion.cruises }}</strong>
+        <p>{{ opinion.opinion }}</p>  
+    </li>
+    {% endfor %}
+</ul>
