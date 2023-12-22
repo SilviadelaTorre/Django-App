@@ -6,6 +6,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.views.decorators.csrf import csrf_protect
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
+from itertools import groupby
+from operator import attrgetter
 
 # Create your views here.
 def index(request):
@@ -18,10 +20,14 @@ def destinations(request):
     all_destinations = models.Destination.objects.all()
     return render(request, 'destinations.html', { 'destinations': all_destinations})
 
-def opinions(request):
-    all_opinions = models.Opinions.objects.all()
-    return render(request, 'opinions_info.html', { 'opinions': all_opinions})
+# def opinions(request):
+#     all_opinions = models.Opinions.objects.all()
+#     return render(request, 'opinions_info.html', { 'opinions': all_opinions})
 
+def grouped_opinions(request):
+    opinions = models.Opinions.objects.all().order_by('cruise')
+    grouped_opinions = {k: list(v) for k, v in groupby(opinions, key=attrgetter('cruise'))}
+    return render(request, 'opinions_info.html', {'grouped_opinions': grouped_opinions})
 
 class DestinationDetailView(generic.DetailView):
     template_name = 'destination_detail.html'
