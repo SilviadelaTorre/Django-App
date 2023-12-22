@@ -76,5 +76,6 @@ class Opinions(models.Model):
         Cruise,
         on_delete=models.PROTECT
     )
-  
+    def __str__(self):
+        return self.name
 

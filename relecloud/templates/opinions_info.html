@@ -1,26 +1,23 @@
 {% extends 'base.html' %}
-
 {% block title %}
-ReleCloud - Opinions
+Relecloud - Opinions
 {% endblock %}
 
 {% block content %}
 <h1>Opinions</h1>
 
-<a href="{% url 'opinions' %}" class="btn btn-primary">Give your opinion!</a>
 
-<!-- See opinions table -->
-<h2>See all opinions about the Cruises</h2>
-<ul class="list-group">
-    {% for opinion in opinions %} 
-    <a class="list-group-item list-group-item-action">
-        {{opinion.cruise.name}} - {{opinion.opinion}}
-    </a>
+<a href="{% url 'opinions_form' %}" class="btn btn-primary">Create Opinion</a>
+<br>
+
+<!-- Table -->
+<h2>See all opinions about cruises</h2>
+<ul>
+    {% for op in opinions %}
+    <li>
+        <strong>{{ op.cruises }}</strong>
+        <p>{{ op.opinion }}</p>  
+    </li>
     {% endfor %}
 </ul>
-
-
-
-
-
 {% endblock content %}

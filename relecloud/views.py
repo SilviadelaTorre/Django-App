@@ -18,13 +18,10 @@ def destinations(request):
     all_destinations = models.Destination.objects.all()
     return render(request, 'destinations.html', { 'destinations': all_destinations})
 
+def opinions(request):
+    all_opinions = models.Opinions.objects.all()
+    return render(request, 'opinions_info.html', { 'opinions': all_opinions})
 
-def cruise_opinions_table(request):
-    cruises_and_opinions = {
-        'cruises': models.Cruise.objects.all(),
-        'opinions': models.Opinions.objects.all(),
-    }
-    return render(request, 'opinions_info.html', {'opinions': cruises_and_opinions})
 
 class DestinationDetailView(generic.DetailView):
     template_name = 'destination_detail.html'
@@ -66,19 +63,28 @@ class InfoRequestCreate(SuccessMessageMixin, generic.CreateView):
         return super().form_valid(form)'''
     
 
-class Opinions(SuccessMessageMixin, generic.CreateView): # form opinions
-    template_name = 'opinions.html'
-    model = models.Opinions
-    fields = ['name', 'email', 'cruise', 'opinion']
-    success_url = reverse_lazy('opinions_info')
-    success_message = 'Thank you, %(name)s! Your opinion has been saved!'
-
-    def form_valid(self, form):
-        received_csrf_token = self.request.POST.get('csrfmiddlewaretoken')
-        print(f"Received CSRF Token: {received_csrf_token}")
-        return super().form_valid(form)
-
-class OpinionsTable(SuccessMessageMixin, generic.CreateView):
+class OpinionsInfo(SuccessMessageMixin, generic.CreateView):
     template_name = 'opinions_info.html'
     model = models.Opinions
     context_object_name = 'opinion'
+    
+    '''def form_valid(self, form):
+        received_csrf_token = self.request.POST.get('csrfmiddlewaretoken')
+        print(f"Received CSRF Token: {received_csrf_token}")
+
+        # Your existing logic to save the form data
+        return super().form_valid(form)'''
+
+class OpinionsForm(SuccessMessageMixin, generic.CreateView):
+    template_name = 'opinions_form.html'
+    model = models.Opinions
+    fields = ['name', 'email', 'cruise', 'opinion']
+    success_url = reverse_lazy('opinions_info')
+    success_message = 'Thank you, %(name)s! Your opinion has been recorded!'
+
+    '''def form_valid(self, form):
+        received_csrf_token = self.request.POST.get('csrfmiddlewaretoken')
+        print(f"Received CSRF Token: {received_csrf_token}")
+
+        # Your existing logic to save the form data
+        return super().form_valid(form)'''
