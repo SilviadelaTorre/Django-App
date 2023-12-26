@@ -8,6 +8,9 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from django.shortcuts import render
 from django.core.mail import send_mail
+from itertools import groupby
+from operator import attrgetter
+
 
 # Create your views here.
 def index(request):
@@ -19,6 +22,11 @@ def about(request):
 def destinations(request):
     all_destinations = models.Destination.objects.all()
     return render(request, 'destinations.html', { 'destinations': all_destinations})
+
+def grouped_opinions(request):
+    opinions = models.Opinions.objects.all().order_by('cruise')
+    grouped_opinions = {k: list(v) for k, v in groupby(opinions, key=attrgetter('cruise'))}
+    return render(request, 'opinions_info.html', {'grouped_opinions': grouped_opinions})
 
 class DestinationDetailView(generic.DetailView):
     template_name = 'destination_detail.html'
@@ -74,6 +82,33 @@ def email_notification(request):
 
         send_mail(subject, body, from_email, recipient_list)
 
-        success_message = 'Form submitted successfully!'
+        success_message = 'Email sent successfully!'
 
     return render(request, 'info_request_create.html', {'success_message': success_message})
+
+    
+class OpinionsInfo(SuccessMessageMixin, generic.CreateView):
+    template_name = 'opinions_info.html'
+    model = models.Opinions
+    context_object_name = 'opinion'
+    
+    def form_valid(self, form):
+        received_csrf_token = self.request.POST.get('csrfmiddlewaretoken')
+        print(f"Received CSRF Token: {received_csrf_token}")
+
+        # Your existing logic to save the form data
+        return super().form_valid(form)
+
+class OpinionsForm(SuccessMessageMixin, generic.CreateView):
+    template_name = 'opinions_form.html'
+    model = models.Opinions
+    fields = ['name', 'email', 'cruise', 'opinion']
+    success_url = reverse_lazy('opinions_info')
+    success_message = 'Thank you, %(name)s! Your opinion has been recorded!'
+
+    def form_valid(self, form):
+        received_csrf_token = self.request.POST.get('csrfmiddlewaretoken')
+        print(f"Received CSRF Token: {received_csrf_token}")
+
+        # Your existing logic to save the form data
+        return super().form_valid(form)

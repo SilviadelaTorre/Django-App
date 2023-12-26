@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+Relecloud - Opinions
+{% endblock %}
+
+{% block content %}
+<h1>Opinions</h1>
+
+
+<a href="{% url 'opinions_form' %}" class="btn btn-primary">Create Opinion</a>
+
+
+<!-- Table -->
+
+<h2 style="margin-top: 20px;">See all opinions about cruises</h2>
+
+<table class="table table-striped" style="margin-top: 20px;">
+
+    <thead>
+        <tr>
+            <th>Cruise</th>
+            <th>Opinion</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cruise, opinions in grouped_opinions.items %}
+            <tr>
+                <td rowspan="{{ opinions|length }}"> {{ cruise.name }}</td>
+                <td>{{ opinions.0.opinion }}</td>
+            </tr>
+            {% for op in opinions|slice:"1:" %}
+                <tr>
+                    <td>{{ op.opinion }}</td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
