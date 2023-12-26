@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
 {% block title %}
 Relecloud - Opinions
 {% endblock %}
@@ -7,12 +9,10 @@ Relecloud - Opinions
 <h1>Opinions</h1>
 
 <h2>Fill out the following form to create an opinion about a cruise</h2>
-
 <form method="POST" class="form">
     {% csrf_token %}
     {% for field in form %}
     <div class="form-group">
-        {{ field.label_tag }}
         {{ field|as_crispy_field }}
         {{field.errors}}
         {% if field.help_text %}
@@ -21,4 +21,9 @@ Relecloud - Opinions
         {% for error in field.errors %}
         <p style="color: red">{{ error }}</p>
         {% endfor %}
+    </div>
+    {% endfor %}
     <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock %}
