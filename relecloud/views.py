@@ -20,10 +20,6 @@ def destinations(request):
     all_destinations = models.Destination.objects.all()
     return render(request, 'destinations.html', { 'destinations': all_destinations})
 
-# def opinions(request):
-#     all_opinions = models.Opinions.objects.all()
-#     return render(request, 'opinions_info.html', { 'opinions': all_opinions})
-
 def grouped_opinions(request):
     opinions = models.Opinions.objects.all().order_by('cruise')
     grouped_opinions = {k: list(v) for k, v in groupby(opinions, key=attrgetter('cruise'))}
@@ -67,8 +63,8 @@ class InfoRequestCreate(SuccessMessageMixin, generic.CreateView):
 
         # Your existing logic to save the form data
         return super().form_valid(form)'''
-    
 
+    
 class OpinionsInfo(SuccessMessageMixin, generic.CreateView):
     template_name = 'opinions_info.html'
     model = models.Opinions
