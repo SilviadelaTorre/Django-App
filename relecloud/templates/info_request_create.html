@@ -10,7 +10,7 @@ ReleCloud - Request information
 <h1>Request information</h1>
 <h2>Fill out the form below to request information about our cruises</h2>
 
-<form method="post">
+<form action={% url 'email_notification' %} method="post">
     {% csrf_token %}
     
     {{form|crispy}}

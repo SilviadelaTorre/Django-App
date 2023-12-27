@@ -142,6 +142,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_COOKIE_SECURE = True  # Set to True if using HTTPS
 CSRF_COOKIE_SAMESITE = 'Lax'  # Adjust as needed (Lax, Strict, None)
 
+EMAIL_HOST = 'smtp.office365.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = '7903401@alumnos.ufv.es'
+EMAIL_HOST_PASSWORD = '00-Lisboa-99'
 
 CSRF_TRUSTED_ORIGINS = ['https://relecloud.azurewebsites.net','https://relecloud-web.azurewebsites.net','https://relecloudsilvia.azurewebsites.net','https://relecloudweb.azurewebsites.net']
 CSRF_COOKIE_DOMAIN = 'relecloud.azurewebsites.net'
