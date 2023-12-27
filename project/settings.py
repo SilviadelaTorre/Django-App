@@ -151,3 +151,8 @@ EMAIL_HOST_PASSWORD = '00-Lisboa-99'
 CSRF_TRUSTED_ORIGINS = ['https://relecloud.azurewebsites.net','https://relecloud-web.azurewebsites.net','https://relecloudsilvia.azurewebsites.net','https://relecloudweb.azurewebsites.net']
 CSRF_COOKIE_DOMAIN = 'relecloud.azurewebsites.net'
 
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+

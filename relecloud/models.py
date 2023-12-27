@@ -15,6 +15,9 @@ class Destination(models.Model):
         blank=False
     )
     slug = models.SlugField()
+    #slug2 = models.SlugField()
+    image = models.ImageField(upload_to='pics')
+    
 
     def __str__(self):
         return self.name
@@ -22,6 +25,32 @@ class Destination(models.Model):
     def get_absolute_url(self):
         return reverse("destination_detail", kwargs={"pk": self.pk})
     
+"""
+class Destinations(models.Model):
+    name = models.CharField(
+        unique=True,
+        max_length=50,
+        null=False,
+        blank=False,
+    )
+    description = models.TextField(
+        max_length=2000,
+        null=False,
+        blank=False
+    )
+    slug = models.SlugField()
+    #image = models.ImageField(upload_to='pics')
+    #slug2 = models.SlugField()
+    
+
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse("destination_detail", kwargs={"pk": self.pk})
+
+"""
+
 
 class Cruise(models.Model):
     name = models.CharField(
@@ -38,6 +67,7 @@ class Cruise(models.Model):
     destinations = models.ManyToManyField(
         Destination,
         related_name='cruises'
+
     )
     def __str__(self):
         return self.name
@@ -96,4 +126,9 @@ class Opinions(models.Model):
     )
     def __str__(self):
         return self.name
+
+class Image(models.Model):
+    title = models.CharField(max_length=20)
+    photo = models.CharField()
+
 
